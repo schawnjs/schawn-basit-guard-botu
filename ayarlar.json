@@ -1,8 +1,9 @@
 {
     
- "prefix": "PREFİNİX",
+ "prefix": "PREFİXİNİZ",
  "sahip": "SAHİP ID",
 
+ "guvenlikisi": "ROL SİLİNCE ETKİLENMİCEK KİŞİLERİN ID",
  "korumalog": "KORUMA LOG ID",
  "botses": "BOT SES ID"
 
