@@ -121,7 +121,7 @@ client.on("roleDelete", async role => {
   let schawn = await role.guild.fetchAuditLogs({ type: "ROLE_DELETE"}).then(sch => sch.entries.first())
   if(schawn.executor.id === client.user.id) return;
 
-  let silen = await role.guild.members.cache.get(schawn1.executor.id)
+  let silen = await role.guild.members.cache.get(schawn.executor.id)
   if(silen.id == ayarlar.guvenlikisi) return;
 
    if(ayarlar.korumalog) {
@@ -138,7 +138,7 @@ client.on("roleDelete", async role => {
       `)
       .setThumbnail(schawn.executor.avatarURL({ dynamic: true }))
       .setTimestamp()
-      .setFooter(`schawn ❤️ Pulsé`)
+      .setFooter(`schawn ❤️ Valeria`)
       client.channels.cache.get(ayarlar.korumalog).send(pıro)
    }
    role.guild.roles.create({ data: {
@@ -179,7 +179,7 @@ client.on("roleCreate", async role => {
       `)
       .setThumbnail(schawn1.executor.avatarURL({ dynamic: true }))
       .setTimestamp()
-      .setFooter(`schawn ❤️ Pulsé`)
+      .setFooter(`schawn ❤️ Valeria`)
     client.channels.cache.get(ayarlar.korumalog).send(pıro31)
    }
   role.delete()
@@ -221,5 +221,3 @@ client.on("ready", async function () {
 //--------------------BOT-SES--------------------\\
 
 client.login(process.env.token);
-
-
