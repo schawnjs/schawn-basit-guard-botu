@@ -1,4 +1,4 @@
-const Discord = require("discord.js"); // scháwn 
+const Discord = require("discord.js"); // schâwn 
 const client = new Discord.Client(); 
 const ayarlar = require("./ayarlar.json"); 
 const chalk = require("chalk"); 
@@ -8,13 +8,13 @@ const { Client, Util } = require("discord.js");
 const fs = require("fs"); 
 const db = require("quick.db");
 const express = require("express");   
-require("./util/eventLoader.js")(client); // scháwn 
+require("./util/eventLoader.js")(client); // schâwn 
 const path = require("path"); 
 const snekfetch = require("snekfetch");  
 const ms = require("ms"); 
 const tags = require("common-tags");
 
-var prefix = ayarlar.prefix;  // scháwn 
+var prefix = ayarlar.prefix;  // schâwn 
 
 const log = message => {
   
@@ -23,14 +23,14 @@ const log = message => {
 
 client.commands = new Discord.Collection(); 
 client.aliases = new Discord.Collection(); 
-fs.readdir("./komutlar/", (err, files) => { // scháwn 
+fs.readdir("./komutlar/", (err, files) => { // schâwn 
   
   if (err) console.error(err); 
   
   log(` ${files.length} Botun komutları yüklenecek...`); 
   files.forEach(f => {
     
-    let props = require(`./komutlar/${f}`);  // scháwn 
+    let props = require(`./komutlar/${f}`);  // schâwn 
     log(`[KOMUT] | ${props.help.name} Eklendi.`); 
     client.commands.set(props.help.name, props); 
     props.conf.aliases.forEach(alias => {
@@ -41,7 +41,7 @@ fs.readdir("./komutlar/", (err, files) => { // scháwn
 });
 
 client.reload = command => {
-  return new Promise((resolve, reject) => { // scháwn 
+  return new Promise((resolve, reject) => { // schâwn 
     try {
       delete require.cache[require.resolve(`./komutlar/${command}`)];
       let cmd = require(`./komutlar/${command}`);
@@ -51,7 +51,7 @@ client.reload = command => {
       });
       client.commands.set(command, cmd);
       cmd.conf.aliases.forEach(alias => {
-        client.aliases.set(alias, cmd.help.name); // scháwn 
+        client.aliases.set(alias, cmd.help.name); // schâwn 
       });
       resolve();
     } catch (e) {
@@ -60,10 +60,10 @@ client.reload = command => {
   });
 };
 
-client.load = command => { // scháwn 
+client.load = command => { // schâwn 
   return new Promise((resolve, reject) => {
     try {
-      let cmd = require(`./komutlar/${command}`); // scháwn 
+      let cmd = require(`./komutlar/${command}`); // schâwn 
       client.commands.set(command, cmd);
       cmd.conf.aliases.forEach(alias => {
         client.aliases.set(alias, cmd.help.name);
@@ -78,11 +78,11 @@ client.load = command => { // scháwn
 client.unload = command => {
   return new Promise((resolve, reject) => {
     try {
-      delete require.cache[require.resolve(`./komutlar/${command}`)]; // scháwn 
+      delete require.cache[require.resolve(`./komutlar/${command}`)]; // schâwn 
       let cmd = require(`./komutlar/${command}`);
       client.commands.delete(command);
       client.aliases.forEach((cmd, alias) => {
-        if (cmd === command) client.aliases.delete(alias); // scháwn 
+        if (cmd === command) client.aliases.delete(alias); // schâwn 
       });
       resolve();
     } catch (e) {
@@ -96,7 +96,7 @@ client.elevation = message => {
     return;
   }
 
-  let permlvl = 0; // scháwn 
+  let permlvl = 0; // schâwn 
   if (message.member.hasPermission("BAN_MEMBERS")) permlvl = 2;
   if (message.member.hasPermission("ADMINISTRATOR")) permlvl = 3;
   if (message.author.id === ayarlar.sahip) permlvl = 4;
@@ -106,12 +106,11 @@ client.elevation = message => {
 var regToken = /[\w\d]{24}\.[\w\d]{6}\.[\w\d-_]{27}/g;
 
 client.on("warn", e => {
-  console.log(chalk.bgYellow(e.replace(regToken, "that was redacted"))); // scháwn 
+  console.log(chalk.bgYellow(e.replace(regToken, "that was redacted"))); // schâwn 
 });
 client.on("error", e => {
   console.log(chalk.bgRed(e.replace(regToken, "that was redacted")));
 });
-
 
 //--------------------ROL-SİLME--------------------\\
 
@@ -131,14 +130,14 @@ client.on("roleDelete", async role => {
       .setTitle(`Sunucudaki Bir Rol Silindi!`)
       .setDescription(`
 
-      Silen Yetkili: ${schawn.executor} | (\`${schawn.executor.id}\`)
+      Silen Yetkili: ${schawn.executor} - (\`${schawn.executor.id}\`)
        
       Yapılan İşlem: **\`Silinen Rol Yeniden Oluşturuldu.\`**
 
       `)
       .setThumbnail(schawn.executor.avatarURL({ dynamic: true }))
       .setTimestamp()
-      .setFooter(`schawn ❤️ Valeria`)
+      .setFooter(`schâwn ❤️ Lawertz`)
       client.channels.cache.get(ayarlar.korumalog).send(pıro)
    }
    role.guild.roles.create({ data: {
@@ -172,14 +171,14 @@ client.on("roleCreate", async role => {
       .setTitle(`Sunucuda Bir Rol Oluşturuldu!`)
       .setDescription(`
 
-      Oluşturan Yetkili: ${schawn1.executor} | (\`${schawn1.executor.id}\`)
+      Oluşturan Yetkili: ${schawn1.executor} - (\`${schawn1.executor.id}\`)
        
       Yapılan İşlem: **\`Oluşturulan Rol Silindi.\`**
 
       `)
       .setThumbnail(schawn1.executor.avatarURL({ dynamic: true }))
       .setTimestamp()
-      .setFooter(`schawn ❤️ Valeria`)
+      .setFooter(`schâwn ❤️ Lawertz`)
     client.channels.cache.get(ayarlar.korumalog).send(pıro31)
    }
   role.delete()
@@ -188,12 +187,43 @@ client.on("roleCreate", async role => {
 
 //--------------------ROL-OLUŞTURMA--------------------\\
 
+//--------------------BOT-EKLEME--------------------\\
+
+client.on("guildMemberAdd", async botabi => {
+let schawnxd = await botabi.guild.fetchAuditLogs({ type: "BOT_ADD"}).then(xd => xd.entries.first())
+if(schawnxd.executor.id === client.user.id) return;
+
+let ekleyen = await botabi.guild.members.cache.get(schawnxd.executor.id)
+if(ekleyen.id == ayarlar.guvenlikisi) return;
+
+if(ayarlar.korumalog) {
+  const pıro62 = new Discord.MessageEmbed()
+   .setColor("RED")
+   .setAuthor(schawnxd.executor.displayName, schawnxd.executor.avatarURL({ dynamic: true }))
+   .setTitle("Sunucuya Bir Bot Eklendi!")
+   .setDescription(`
+   
+   Ekleyen Yetkili: ${schawnxd.executor} - (\`${schawnxd.executor.id}\`)
+   Yetkiliye Yapılan İşlem: \`Banlanma\`
+   Bota Yapılan İşlem: \`Banlanma\` 
+   
+   `)
+   .setThumbnail(schawnxd.executor.avatarURL({ dynamic: true }))
+   .setTimestamp()
+   .setFooter(`schâwn ❤️ Lawertz`)
+ client.channels.cache.get(ayarlar.korumalog).send(pıro62)
+ }
+ botabi.ban(schawnxd.executor.id, { reason: "Bot Eklendi!"})
+});
+
+//--------------------BOT-EKLEME--------------------\\
+
 //--------------------KANAL-SİLME--------------------\\
 
 client.on("channelDelete", async channel => {
-  let rol = await db.fetch(`kanalab_${channel.guild.id}`);
+  let kanal = await db.fetch(`kanalab_${channel.guild.id}`);
 
-if (rol) {
+if (kanal) {
 const guild = channel.guild.cache;
 let çenıl = channel.parentID;
 

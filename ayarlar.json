@@ -1,10 +1,10 @@
 {
     
- "prefix": "PREFİXİNİZ",
- "sahip": "SAHİP ID",
-
- "guvenlikisi": "ROL SİLİNCE ETKİLENMİCEK KİŞİLERİN ID",
- "korumalog": "KORUMA LOG ID",
- "botses": "BOT SES ID"
-
-}
+    "prefix": ".",
+    "sahip": "681250871119446025",
+   
+    "guvenlikisi": "681250871119446025",
+    "korumalog": "847578754746417152",
+    "botses": "847578673187651655"
+   
+   }
